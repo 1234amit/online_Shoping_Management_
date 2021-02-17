@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %} order page {% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="text-center"><strong>Your Orders</strong></h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mt-5" style="height:auto">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="col">#</th>
+                                <th class="col">Order Id</th>
+                                <th class="col">Products</th>
+                                <th class="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td><a href=#>{{order.orderId}}</a></td>
+                                <td>
+                                    {% for item in order.orderitems.all %}
+                                        {{item}}<br>
+                                    {% endfor %}
+                                </td>
+                                <td><span class="btn btn-primary">Processing Your Order</span></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

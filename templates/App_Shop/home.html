@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title_block %} Home Page {% endblock %}
+{% block content %}
+<!--Banner start-->
+        <section>
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 ml-auto order-md-2 align-self-start">
+                    <div class="banner-content">
+                        <h2 class="first-title">Welcome To Our Website</h2>
+                        <h1>Welcome</h1>
+                        <p>Buy the products here.</p>
+                        <a href="#" class="btn btn-hero my-2">Shop Now</a>
+                    </div>
+                </div>
+                <div class="col-md-6 order-1 align-self-end">
+                    <img src="{% static 'images/2.png' %}" alt="#" class="img-fluid"> 
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+    
+        </section>
+<!--End Banner-->
+    <!--categories-->
+    	<section>
+    		<div class="category-section">
+    			<div class="container-fluid">
+    				<div class="row">
+    					<div class="col-lg-4">
+    						<div class="category-alone">
+    							<img src="{% static 'images/1.jpg' %}" class="image-fluid" alt="#">
+    							<div class="inner">
+    								<h4>T-Shirt</h4>
+    							</div>
+    						</div>
+    					</div>
+    					<!---->
+    					<div class="col-lg-4">
+    						<div class="category-alone">
+    							<img src="{% static 'images/4.jpg' %}" class="image-fluid" alt="#">
+    							<div class="inner">
+    								<h4>T-Shirt</h4>
+    							</div>
+    						</div>
+    					</div>
+    					<!---->
+    					<div class="col-lg-4">
+    						<div class="category-alone">
+    							<img src="{% static 'images/3.jpg' %}" class="image-fluid" alt="#">
+    							<div class="inner">
+    								<h4>T-Shirt</h4>
+    							</div>
+    						</div>
+    					</div>
+    					<!---->	 
+    				</div>
+    			</div>
+    		</div>
+    	</section>
+<!--end catagories-->
+
+        <section>
+    <div class="product-panel">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2 class="text-center">Trending-item</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-detail">
+                        
+                        <!--End of Tabs-->
+                        <div class="tab-content" id="myTabContent">
+                            <!--Single Tab-->
+                            <div class="tab-pane fade show active"id="sneakers"role="tabpanel">
+                                <div class="tab-single">
+                                    <div class="row">
+                                    <!--Start-->
+                                    {% for product in object_list %}
+                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                            <div class="single-product">
+                                                <div class="product-img">
+                                                    <a href="#">
+                                                        <img src="/media/{{product.mainimage}}" class="main-img" alt="#">
+                                                    </a>
+                                                <div class="button-head">
+                                                    <div class="action-button">
+                                                        <a data-toggle="modal" data-target="#exampleModal"
+                                                        title="Quick view" href="#">
+                                                    <i class="far fa-eye"></i><span>Quick Shop</span>
+                                                    </a>
+                                                        <a title="Wishlist"href="#"><i class="far fa-heart"></i>
+                                                        <span>Add to Wishlist</span></a>
+                                                        <a title="shopping"href="#"><i class="fas fa-shopping-bag"></i>
+                                                        <span>Buy Now</span></a>
+
+                                                    </div>
+
+                                                    <div class="button-low">
+                                                        <a title="Add to cart" href="#">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="product-title">
+                                                <h3><a href="{% url 'App_Shop:product_detail' pk=product.pk %}">{{product.name}}</a></h3>
+                                                <div class="product-price">
+                                                    <span class="price-new">&#2547; {{product.price|floatformat:2}}</span>
+                                                    <span class="price-old"><strike>&#2547; {{product.old_price|floatformat:2}}</strike></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    {% endfor %}
+                       <!----->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </section> 
+    
+
+    	<!--Services Section-->
+    	<section class="service-intro m-3">
+    		<div class="container">
+    			<div class="row no-gutters">
+    				<div class="col-md-4 d-flex">
+    					<div class="intro d-lg-flex">
+	    					<div class="icon">
+	    						<i class="fas fa-phone-volume"></i>
+	    					</div>
+	    					<div class="text">
+	    						<h2>Online Support 24/7</h2>
+	    						<p>When hosting your website on the web you will need to make sure that the company providing the server environment and the related hosting services will also offer customer support round the clock.</p>
+	    					</div>
+	    				</div>
+    				</div>
+	    				<!---->
+    				<div class="col-md-4 d-flex">
+    					<div class="intro color-1 d-lg-flex">
+	    					<div class="icon">
+	    						<i class="fas fa-wallet"></i>
+	    					</div>
+	    					<div class="text">
+	    						<h2> Money Back Guarantee </h2>
+	    						<p>When hosting your website on the web you will need to make sure that the company providing the server environment and the related hosting services will also offer customer support round the clock.</p>
+	    					</div>
+	    				</div>
+    				</div>
+	    				<!---->
+    				<div class="col-md-4 d-flex">
+    					<div class="intro color-2 d-lg-flex">
+	    					<div class="icon">
+	    						<i class="fas fa-truck"></i>
+	    					</div>
+	    					<div class="text">
+	    						<h2>Free Delivery</h2>
+	    						<p>When hosting your website on the web you will need to make sure that the company providing the server environment and the related hosting services will also offer customer support round the clock.</p>
+	    					</div>
+	    				</div>
+    				</div>
+	    				<!---->
+	    			</div>
+    			
+    			</div>
+    			
+    		</div>
+    	</section>
+
+    	<!---End Services Section-->
+
+        <!--About Start-->
+    	<section class="about m-3">
+    		<div class="about-area section-padding 30">
+    			<div class="container">
+    				<div class="row align-items-center justify-content-between padding-130">
+    					<div class="col-lg-5 col-md-6">
+    						<div class="about-details mb-30">
+    							<h2>About Us</h2>
+								<p>Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+								<a href="#" class="btn btn-about">Know More</a>
+    						</div>
+    						
+    					</div>
+    					<div class="col-lg-6 col-md-6 col-sm-10">
+    						<div class="about-img mb-40">
+    							<img src="{% static 'images/download (2).jpg' %}" class="image-fluid" alt="image">
+    						</div>
+    					</div>
+    				</div>
+    				<div class="row align-items-center justify-content-between">
+    					<div class="col-lg-6 col-md-6 col-sm-10">
+    						<div class="about-img mb-40">
+    							<img src="{% static 'images/2.jpg' %}" class="image-fluid" alt="image">
+    						</div>
+    					</div>
+    					<div class="col-lg-5 col-md-6">
+    						<div class="about-details mb-40">
+    							<h2>About Us</h2>
+								<p>Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+								<a href="#" class="btn btn-about">Know More</a>
+    						</div>
+    						
+    					</div>
+    					
+    				</div>
+
+    				
+    			</div>
+    			
+    		</div>
+    		
+    	</section>
+
+    	<!--End About Section-->
+        
+    	<!--Footer-->
+    	<footer id="footer">
+    		<div class="footer-top">
+    			<div class="container">
+    				<div class="row justify-content-center">
+    					<div class="col-lg-6">
+    						<h3>E-Commerce</h3>
+    						<p>I started Ecommerce.Com to be the resource I never had when I built my business. I built several multi-million dollar businesses, all bootstrapped, and took them to 7 figures in just a year.</p>
+    					</div>
+    				</div>
+    				<div class="row footer-newsletter justify-content-center">
+    					<div class="col-lg-6">
+    						<form method="POST">
+    							<input type="email" name="email" placeholder="Enter Email">
+    							<input type="submit" value="suscribe">
+    						</form>
+    					</div>
+    				</div>
+    				<div class="social-links">
+    					<a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+    					<a href="#" class="facebook"><i class="fab fa-facebook"></i></a>
+    					<a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+    				</div>
+    			</div>
+    			
+    		</div>
+    		
+    	</footer>
+
+    	<!--End Footer-->
+{% endblock content %}

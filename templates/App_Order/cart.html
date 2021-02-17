@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %} cart page {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="my-3">
+        <h2 class="text-center">Your Cart</h2>
+    </div>
+    <table class="table table-striped table-light">
+        <thead>
+            <tr>
+                <th scope="col" width="15%">#</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cart in carts %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{cart.item.name}}</td>
+                    <td>
+                        <a class="mr-2" href="{% url 'App_Order:decrease' pk=cart.item.pk %}"><span class="badge badge-light"><i class="fas fa-minus"></i></span></a>
+                        {{cart.quantity}}
+                        <a class="mr-2" href="{% url 'App_Order:increase' pk=cart.item.pk %}"><span class="badge badge-light"><i class="fas fa-plus"></i></span></a>
+                    </td>
+                    <td>&#2547; {{cart.get_total|floatformat:2}}</td>
+                    <td><a href="{% url 'App_Order:remove' pk=cart.item.pk %}" class="btn btn-danger">Remove Form cart</a></td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <th scope="row"></th>
+                <td colspan="2">Total</td>
+                <td align="right">&#2547;{{order.get_totals|floatformat:2}}</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td colspan="4" class="text-right">
+                    <a href="{% url 'App_Shop:home' %}" class="btn btn-warning mr-4">Continue Shopping</a>
+                    <a href="{% url 'App_Payment:checkout' %}" class="btn btn-success mr-4">Process to Checkout</a>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock content %}
